@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>긴 글도 한 줄로</title>
+    <style>
+        html {
+            font-family: "Malgun Gothic Light";
+        }
+        textarea {
+            width: 48%;
+            height: 600px;
+            margin: 0.5%;
+            font-size: 16px;
+            float: left;
+        }
+        pre {
+            float: left; 
+       }
+    </style>
+    <script>
+        function createOneLineFrom(givenText) {
+            return givenText.replace(/[\r\n\x0B\x0C\u0085\u2028\u2029]+/g, " ");
+        }
+
+        function fillOneLineBoxWith(oneLine) {
+            document.getElementById("oneLineBox").innerHTML = oneLine;
+        }
+        
+        function convertToOneLineAndPrint(){
+            let givenText = document.getElementById("givenTextBox").value;
+            let oneLine = createOneLineFrom(givenText);
+            fillOneLineBoxWith(oneLine);
+        }
+    </script>
+</head>
+
+<body>
+    <textarea id="givenTextBox" onkeydown="convertToOneLineAndPrint();" onkeyup="convertToOneLineAndPrint();" onmouseup="convertToOneLineAndPrint();"></textarea>
+    <textarea id="oneLineBox"></textarea>
+    
+    <pre><b>※ 각 줄 사이에는 띄어쓰기가 삽입됩니다.</b></pre>
+</body>
+
+</html>
